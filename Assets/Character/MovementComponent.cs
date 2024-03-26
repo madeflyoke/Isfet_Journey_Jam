@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Character
@@ -30,6 +31,7 @@ namespace Character
                 float x = Input.GetAxisRaw("Horizontal");
          
                 _moveDirection = new Vector3(x*_moveSpeed, 0f, 0f);
+                AdjustVelocityToGroundAngle();
 
                 if (Input.GetButtonDown("Jump"))
                 {
@@ -44,6 +46,29 @@ namespace Character
             if (_controller.isGrounded)
             {
                 _isJumping = false;
+            }
+        }
+
+        
+        private void OnControllerColliderHit(ControllerColliderHit _)
+        {
+            if (_isJumping)
+            {
+                _moveDirection = Vector3.zero; 
+            }
+        }
+
+        private void AdjustVelocityToGroundAngle()
+        {
+            Ray ray = new Ray(transform.position, -transform.up);
+            if (Physics.Raycast(ray, out RaycastHit hit, 1f))
+            {
+                var rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                var velocity = rotation * _moveDirection;
+                if (velocity.y<0)
+                {
+                    _moveDirection = velocity;
+                }
             }
         }
 
