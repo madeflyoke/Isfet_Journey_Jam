@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/Stylesheets/GameplayScreenStyle.uss?fileID=7433441132597879392&amp;guid=d85e1980c3df0ec4991ba4c98bf1145d&amp;type=3#GameplayScreenStyle" />
+</ui:UXML>
