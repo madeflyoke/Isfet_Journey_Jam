@@ -14,18 +14,25 @@ namespace Character
         
         private Vector3 _moveDirection;
         private bool _isJumping;
-        private bool _isInitialized;
+        private bool _canMove = false;
         
         public void Initialize()
         {
-            if (_isInitialized)
-                return;
-            
-            _isInitialized = true;
+            SetActive(true);
+        }
+
+        public void SetActive(bool isActive)
+        {
+            _canMove = isActive;
         }
         
         private void Update()
         {
+            if (_canMove==false)
+            {
+                return;
+            }
+            
             if (_controller.isGrounded)
             {
                 float x = Input.GetAxisRaw("Horizontal");
