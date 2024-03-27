@@ -6,6 +6,7 @@ namespace Character
 {
    public class MainCharacter : MonoBehaviour
    {
+      public event Action OnLose;
       [SerializeField] private MovementComponent _movementComponent;
       [SerializeField] private CharacterController _controller;
       [SerializeField] private GameObject _visualHolder;
@@ -30,6 +31,7 @@ namespace Character
          _visualHolder.SetActive(false);
          _controller.detectCollisions = false;
          _deathParticle.Play();
+         OnLose?.Invoke();
       }
       
    }

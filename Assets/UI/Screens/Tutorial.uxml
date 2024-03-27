@@ -1,3 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Screens/Stylesheets/TutorialStyle.uss?fileID=7433441132597879392&amp;guid=00434ba1c09ce104c8a4003488c259c6&amp;type=3#TutorialStyle" />
+    <Style src="project://database/Assets/UI/Screens/Stylesheets/TutorialScreenStyle.uss?fileID=7433441132597879392&amp;guid=00434ba1c09ce104c8a4003488c259c6&amp;type=3#TutorialScreenStyle" />
+    <ui:VisualElement name="TutorScreen" style="flex-grow: 0; width: 100%; height: 100%; justify-content: center; align-self: flex-end; max-height: none; align-items: center; flex-shrink: 0; transition-duration: 1s;">
+        <ui:VisualElement name="Tutor" style="flex-grow: 1; width: 70%; height: 50%; max-height: 50%; align-self: center; background-color: rgba(0, 0, 0, 0.81); justify-content: space-around;">
+            <ui:VisualElement style="flex-grow: 0; height: 80%;">
+                <ui:Label tabindex="-1" text="TUTOR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="TutorHeader" />
+                <ui:Label tabindex="-1" text="ADODJSAOADJAOJAJDSODASODJASJDASODASd" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Desc" class="TutorDesc" />
+            </ui:VisualElement>
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseTutorBTN" class="button" style="align-self: center; justify-content: center; align-items: center;">
+                <ui:Label tabindex="-1" text="CLOSE" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: middle-center;" />
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

@@ -1,28 +1,40 @@
+using System;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
+using Zenject;
 
 namespace Level
 {
     public class LevelLauncher : MonoBehaviour
     {
+        public event Action OnWin;
+        [Inject] private MainCharacter _characterPrefab;
         [SerializeField] private Transform _startPoint;
         [SerializeField] private FinishTrigger _finishTrigger;
         [SerializeField] private List<SavePoint> _savePoints = new List<SavePoint>();
-        private GameObject Player;
+        public MainCharacter Character { get; private set; }
         private SavePoint _lastSavePoint;
         private Vector3 spawnPosition => _startPoint.position;
 
-        public void Init(GameObject player)
+        public void Init()
         {
-            Player = player;
             _savePoints.ForEach(sp=>sp.OnPlayerReachSavePoint+=UpdateLastSavePoint);
         }
 
         public void Launch()
         {
-            //player start
+            SetupPlayer();
             SpawnPlayer();
-            
+        }
+
+        public void DestroyPlayer()=>GameObject.Destroy(Character.gameObject);
+        
+        private void SetupPlayer()
+        {
+            Character = null;
+            Character = Instantiate(_characterPrefab);
+            Character.gameObject.SetActive(false);
         }
 
         private void UpdateLastSavePoint(SavePoint point)
@@ -42,9 +54,11 @@ namespace Level
         private void SpawnPlayer()
         {
             if (_lastSavePoint == null)
-                Player.transform.position = _startPoint.position;
+                Character.transform.position = _startPoint.position;
             else
-                Player.transform.position = _lastSavePoint.SpawnPosition;
+                Character.transform.position = _lastSavePoint.SpawnPosition;
+            
+            Character.gameObject.SetActive(true);
         }
     }
 }

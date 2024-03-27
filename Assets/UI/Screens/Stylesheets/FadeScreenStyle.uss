@@ -1,0 +1,10 @@
+.FullFade {
+    transition-duration: 1s;
+    background-color: rgba(0, 0, 0, 1);
+    transition-duration: 1s;
+}
+
+.HalfFade {
+    background-color: rgba(0, 0, 0, 0.6);
+    transition-duration: 1s;
+}

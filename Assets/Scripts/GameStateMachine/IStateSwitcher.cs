@@ -1,7 +1,7 @@
 namespace GameStateMachine
 {
-    public interface IStateSwitcher<T> where T:BaseState
+    public interface IStateSwitcher
     {
-        public void SwitchState<T>();
+        public void SwitchState<T>() where T:BaseState;
     }
 }

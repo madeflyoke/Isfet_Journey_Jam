@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
 using GameStateMachine.States;
+using Level;
+using UI.Scripts;
 using UnityEngine;
+using Zenject;
 
 namespace GameStateMachine
 {
-    public class StateMachineController : MonoBehaviour, IStateSwitcher<BaseState>
+    public class StateMachineController : MonoBehaviour, IStateSwitcher
     {
+        [Inject] private ScreenController _screenController;
+        [Inject] private LevelLauncher _levelLauncher;
         private Dictionary<Type, BaseState> _states;
         private BaseState _currentState;
         private StateContext _context;
@@ -25,10 +30,10 @@ namespace GameStateMachine
         private void BuildStateContext()
         {
             _context = new StateContext();
-            _context._StateSwitcher = this;
+            _context.StateSwitcher = this;
         }
 
-        public void SwitchState<T>()
+        public void SwitchState<T>() where T: BaseState
         {
             Debug.Log(typeof(T));
             if (!_states.ContainsKey(typeof(T))) return;
