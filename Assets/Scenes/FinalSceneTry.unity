@@ -521,6 +521,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: chelRa (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6764397704191914925, guid: 2facf6e434adb1d418e5a9194a304e4d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -235.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764397704191914925, guid: 2facf6e434adb1d418e5a9194a304e4d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 31.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764397704191914925, guid: 2facf6e434adb1d418e5a9194a304e4d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -70.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
