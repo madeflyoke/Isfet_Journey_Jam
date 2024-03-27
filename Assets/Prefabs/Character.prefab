@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementComponent: {fileID: 5414413258356225180}
+  _controller: {fileID: 2762119194749361182}
+  _visualHolder: {fileID: 5844166198292861601}
+  _deathParticle: {fileID: 0}
 --- !u!143 &2762119194749361182
 CharacterController:
   m_ObjectHideFlags: 0
@@ -159,6 +162,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a875e8ba1c9dc748b8dd349aca0074d, type: 3}
+--- !u!1 &5844166198292861601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3677890466998728452, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7066389523920741797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7217236894546923421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448140472461191736, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
