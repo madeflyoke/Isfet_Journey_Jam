@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
-using EasyButtons;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Lean.Pool;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Main.Scripts.Audio
 {
@@ -19,8 +18,8 @@ namespace Main.Scripts.Audio
         [SerializeField] private List<ClipBySoundType> _clips;
         [SerializeField] private AudioSource _mainMusicSource;
         [SerializeField] private List<AudioClip> _musicClips;
-        private int _musicIndex;
         private float _defaultMusicVolume;
+        private CancellationTokenSource _cts;
         
         private void Awake()
         {
@@ -34,29 +33,27 @@ namespace Main.Scripts.Audio
 
         private void Start()
         {
-            if (Random.Range(0,1)==1)
-            {
-                _musicClips.Reverse();
-            }
-            _defaultMusicVolume = _mainMusicSource.volume;
-            SetNextMusic();
+            StartMusicPlayer();
         }
 
-        [Button]
-        private void SetNextMusic()
+        private async void StartMusicPlayer()
         {
-            _mainMusicSource.Stop();
-            _mainMusicSource.clip = _musicClips[_musicIndex % _musicClips.Count];
-            _musicIndex++;
-            Invoke(nameof(SetNextMusic), _mainMusicSource.clip.length);
-            _mainMusicSource.volume = 0f;
-            _mainMusicSource.Play();
-            _mainMusicSource.DOFade(_defaultMusicVolume, 10f);
+            _cts = new CancellationTokenSource();
+            var index = 1;
+            while (true)
+            {
+                _mainMusicSource.Stop();
+                index = index == 0 ? 1 : 0;
+                _mainMusicSource.clip = _musicClips[index];
+                _mainMusicSource.Play();
+                await UniTask.Delay(TimeSpan.FromSeconds(_mainMusicSource.clip.length+1f), cancellationToken: _cts.Token);
+            }
         }
+        
 
         private void OnDisable()
         {
-            CancelInvoke();
+            _cts?.Cancel();
         }
 
         public void PlayClip(SoundType soundType, float customVolume = 0f, float customPitch = 1f)

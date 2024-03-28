@@ -21,6 +21,7 @@ namespace Mirror
         {
             _aboveAngleCorrected = _maxAngle / 4f;
             SetStartPoses();
+            StartRot();
         }
 
         [Button]
