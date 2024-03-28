@@ -20,11 +20,10 @@ namespace UI.Scripts
             _root = GetComponent<UIDocument>().rootVisualElement;
             
             _tutor = TutorialScreen.CloneTree().Q<VisualElement>(nameof(UIElementsType.TutorScreen));
-            _root.Add(_tutor);
-            _tutor.AddToClassList(nameof(StyleClasses.TutorHide));
-            
             _fade = FadeScreen.CloneTree().Q<VisualElement>(nameof(UIElementsType.Fade));
             _root.Add(_fade);
+            _root.Add(_tutor);
+            _tutor.AddToClassList(nameof(StyleClasses.TutorHide));
             _fadeAnimationDuration =  1000;
             
         }
