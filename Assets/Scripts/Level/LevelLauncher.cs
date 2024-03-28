@@ -67,6 +67,8 @@ namespace Level
         {
             _finishTrigger.OnPlayerReachFinish -= FinishGame;
             _savePoints.ForEach(sp=>sp.OnPlayerReachSavePoint-=UpdateLastSavePoint);
+            _character.DisablePlayer();
+            OnWin?.Invoke();
             Debug.Log("Finish");
         }
     }
