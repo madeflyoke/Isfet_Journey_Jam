@@ -41,6 +41,13 @@ namespace Character
          await UniTask.Delay(2000);
          OnLose?.Invoke();
       }
+
+      public void DisablePlayer()
+      {
+         _movementComponent.SetActive(false);
+         _mainVisualParticle.Stop();
+         _controller.detectCollisions = false;
+      }
       
    }
 }

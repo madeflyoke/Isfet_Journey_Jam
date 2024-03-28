@@ -9,11 +9,12 @@ namespace UI.Scripts
     { 
         public event Action OnTutorClosed;
         [SerializeField] private VisualTreeAsset TutorialScreen;
-        [SerializeField] private VisualTreeAsset GameplayScreen;
+        [SerializeField] private VisualTreeAsset WinScreen;
         [SerializeField] private VisualTreeAsset FadeScreen;
         private VisualElement _root;
         private VisualElement _fade;
         private VisualElement _tutor;
+        private VisualElement _winScreen;
         private int _fadeAnimationDuration;
         private void OnEnable()
         {
@@ -34,6 +35,13 @@ namespace UI.Scripts
             _fade.AddToClassList(nameof(StyleClasses.FullFade));
             await UniTask.Delay(_fadeAnimationDuration);
             action?.Invoke();
+        }
+
+        public void ShowWinScreen()
+        {
+            _winScreen = WinScreen.CloneTree().Q<VisualElement>(nameof(UIElementsType.WinScreen));
+            _root.Add(_winScreen);
+            _winScreen.Q<Button>().RegisterCallback<ClickEvent>(evt => Application.Quit());
         }
         
         public async void SetFadeHalf(Action action= null)
@@ -76,6 +84,7 @@ namespace UI.Scripts
     
     public enum UIElementsType{
         TutorScreen,
-        Fade
+        Fade,
+        WinScreen
     }
 }
