@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using EasyButtons;
+using Lean.Pool;
 using UnityEngine;
 
 namespace Main.Scripts.Audio
@@ -55,14 +56,14 @@ namespace Main.Scripts.Audio
             CancelInvoke();
         }
 
-        // public void PlayClip(SoundType soundType, float customVolume = 0f)
-        // {
-        //     var audioSource = LeanPool.Spawn(_audioSourcePrefab);
-        //     audioSource.clip = _clips.FirstOrDefault(x=>x.SoundType==soundType).Clip;
-        //     audioSource.volume = customVolume!=0f? customVolume: _soundsVolume;
-        //     LeanPool.Despawn(audioSource, audioSource.clip.length);
-        //     audioSource.Play();
-        // }
+        public void PlayClip(SoundType soundType, float customVolume = 0f)
+        {
+            var audioSource = LeanPool.Spawn(_audioSourcePrefab);
+            audioSource.clip = _clips.FirstOrDefault(x=>x.SoundType==soundType).Clip;
+            audioSource.volume = customVolume!=0f? customVolume: _soundsVolume;
+            LeanPool.Despawn(audioSource, audioSource.clip.length);
+            audioSource.Play();
+        }
         
         [Serializable]
         private struct ClipBySoundType
@@ -70,7 +71,6 @@ namespace Main.Scripts.Audio
             public SoundType SoundType;
             public AudioClip Clip;
         }
-
     }
     
 }
