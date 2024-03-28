@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/Stylesheets/FadeScreenStyle.uss?fileID=7433441132597879392&amp;guid=cc4bb3daabfd0cf48b822a6ee4c3392e&amp;type=3#FadeScreenStyle" />
+    <ui:VisualElement name="Fade" picking-mode="Ignore" class="FullFade" style="flex-grow: 1; position: absolute; transition-duration: 1s; width: 100%; height: 100%;" />
+</ui:UXML>

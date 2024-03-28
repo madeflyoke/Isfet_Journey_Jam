@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/Stylesheets/FadeScreenStyle.uss?fileID=7433441132597879392&amp;guid=cc4bb3daabfd0cf48b822a6ee4c3392e&amp;type=3#FadeScreenStyle" />
+    <Style src="project://database/Assets/UI/Screens/Stylesheets/GameplayScreenStyle.uss?fileID=7433441132597879392&amp;guid=d85e1980c3df0ec4991ba4c98bf1145d&amp;type=3#GameplayScreenStyle" />
+    <Style src="project://database/Assets/UI/Screens/Stylesheets/TutorialScreenStyle.uss?fileID=7433441132597879392&amp;guid=00434ba1c09ce104c8a4003488c259c6&amp;type=3#TutorialScreenStyle" />
+</ui:UXML>
