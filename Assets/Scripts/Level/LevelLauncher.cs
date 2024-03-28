@@ -36,7 +36,7 @@ namespace Level
         private void SetupPlayer()
         {
             _character.Initialize();
-            _character.gameObject.SetActive(false);
+            _character.SetActive(false);
         }
 
         private void UpdateLastSavePoint(SavePoint point)
@@ -60,7 +60,7 @@ namespace Level
             else
                 _character.transform.position = _lastSavePoint.SpawnPosition;
             
-            _character.gameObject.SetActive(true);
+            _character.SetActive(true);
         }
 
         private void FinishGame()

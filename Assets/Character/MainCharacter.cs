@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using EasyButtons;
 using UnityEngine;
@@ -16,9 +15,21 @@ namespace Character
 
       public void Initialize()
       {
-         _mainVisualParticle.Play();
          _movementComponent.Initialize();
          _controller.detectCollisions = true;
+      }
+
+      public void SetActive(bool isActive)
+      {
+         gameObject.SetActive(isActive);
+         if (isActive)
+         {
+            _mainVisualParticle.Play();
+         }
+         else
+         {
+            _mainVisualParticle.Stop();
+         }
       }
 
       [Button]

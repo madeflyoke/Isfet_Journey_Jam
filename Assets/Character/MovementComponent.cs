@@ -1,5 +1,7 @@
 using System;
+using Main.Scripts.Audio;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Character
 {
@@ -50,9 +52,12 @@ namespace Character
 
             _controller.Move(_moveDirection * Time.deltaTime);
 
-            if (_controller.isGrounded)
+            if (_isJumping)
             {
-                _isJumping = false;
+                if (_controller.isGrounded)
+                {
+                    _isJumping = false;
+                }
             }
         }
 
@@ -84,6 +89,7 @@ namespace Character
             _isJumping = true;
             _moveDirection *= _jumpDistanceFactor;
             _moveDirection.y = _jumpHeight;
+            SoundController.Instance?.PlayClip(SoundType.JUMP, customVolume:0.1f, customPitch:Random.Range(0.9f,1f));
         }
         
 #if UNITY_EDITOR
