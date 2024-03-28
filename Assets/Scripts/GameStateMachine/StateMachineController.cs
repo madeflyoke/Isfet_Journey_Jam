@@ -15,7 +15,14 @@ namespace GameStateMachine
         private Dictionary<Type, BaseState> _states;
         private BaseState _currentState;
         private StateContext _context;
-        
+
+        private void Awake()
+        {
+            BuildStateContext();
+            LoadStates();
+            SwitchState<InitialState>();
+        }
+
         private void LoadStates()
         {
             _states = new Dictionary<Type, BaseState>()
@@ -31,6 +38,8 @@ namespace GameStateMachine
         {
             _context = new StateContext();
             _context.StateSwitcher = this;
+            _context.LevelLauncher = _levelLauncher;
+            _context.ScreenController = _screenController;
         }
 
         public void SwitchState<T>() where T: BaseState

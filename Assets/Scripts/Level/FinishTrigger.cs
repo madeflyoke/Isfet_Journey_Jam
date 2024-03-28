@@ -1,4 +1,5 @@
 using System;
+using Character;
 using UnityEngine;
 
 namespace Level
@@ -10,7 +11,10 @@ namespace Level
 
         private void OnTriggerEnter(Collider other)
         {
-            //if player then PlayerReachFinish?.Invoke();
+            if (other.TryGetComponent<MainCharacter>(out MainCharacter character))
+            {
+                OnPlayerReachFinish?.Invoke();
+            }
         }
     }
 }
