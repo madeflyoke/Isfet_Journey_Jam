@@ -56,11 +56,12 @@ namespace Main.Scripts.Audio
             CancelInvoke();
         }
 
-        public void PlayClip(SoundType soundType, float customVolume = 0f)
+        public void PlayClip(SoundType soundType, float customVolume = 0f, float customPitch = 1f)
         {
             var audioSource = LeanPool.Spawn(_audioSourcePrefab);
             audioSource.clip = _clips.FirstOrDefault(x=>x.SoundType==soundType).Clip;
             audioSource.volume = customVolume!=0f? customVolume: _soundsVolume;
+            audioSource.pitch = customPitch;
             LeanPool.Despawn(audioSource, audioSource.clip.length);
             audioSource.Play();
         }

@@ -56,7 +56,7 @@ namespace Character
                 if (_controller.isGrounded)
                 {
                     _isJumping = false;
-                    SoundController.Instance?.PlayClip(SoundType.JUMP);
+                    SoundController.Instance?.PlayClip(SoundType.JUMP, customVolume:0.05f, customPitch:0.9f);
                 }
             }
         }
@@ -89,7 +89,7 @@ namespace Character
             _isJumping = true;
             _moveDirection *= _jumpDistanceFactor;
             _moveDirection.y = _jumpHeight;
-            SoundController.Instance?.PlayClip(SoundType.JUMP);
+            SoundController.Instance?.PlayClip(SoundType.JUMP, customVolume:0.05f, customPitch:1.1f);
         }
         
 #if UNITY_EDITOR
