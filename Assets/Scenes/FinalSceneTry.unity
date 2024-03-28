@@ -2340,7 +2340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TutorialScreen: {fileID: 9197481963319205126, guid: 44081574c30015f459f8d3573bd7aa22,
     type: 3}
-  WinScreen: {fileID: 0}
+  WinScreen: {fileID: 9197481963319205126, guid: 6c4d257a99546454bb36c34fef0d38bf,
+    type: 3}
   FadeScreen: {fileID: 9197481963319205126, guid: 54ebf6a9dd53b4c4a9fc70d015df34cc,
     type: 3}
 --- !u!114 &1946015031
