@@ -48,7 +48,10 @@ MonoBehaviour:
   _audioSourcePrefab: {fileID: 0}
   _soundsVolume: 0.193
   _clips: []
-  _mainMusic: {fileID: 145874923125651838}
+  _mainMusicSource: {fileID: 145874923125651838}
+  _musicClips:
+  - {fileID: 8300000, guid: 979b93d9dd1ea5846bbc922f44c4102b, type: 3}
+  - {fileID: 8300000, guid: 67706df665f128d4182b0c2719fb84df, type: 3}
 --- !u!82 &145874923125651838
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59,9 +62,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 67706df665f128d4182b0c2719fb84df, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_audioClip: {fileID: 8300000, guid: 979b93d9dd1ea5846bbc922f44c4102b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

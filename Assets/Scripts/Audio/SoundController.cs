@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using EasyButtons;
 using UnityEngine;
 
 namespace Main.Scripts.Audio
@@ -14,7 +15,10 @@ namespace Main.Scripts.Audio
         [SerializeField] private AudioSource _audioSourcePrefab;
         [SerializeField, Range(0.01f,1f)] private float _soundsVolume;
         [SerializeField] private List<ClipBySoundType> _clips;
-        [SerializeField] private AudioSource _mainMusic;
+        [SerializeField] private AudioSource _mainMusicSource;
+        [SerializeField] private List<AudioClip> _musicClips;
+        private int _musicIndex;
+        private float _defaultMusicVolume;
         
         private void Awake()
         {
@@ -28,10 +32,27 @@ namespace Main.Scripts.Audio
 
         private void Start()
         {
-            var defaultMusicVolume = _mainMusic.volume;
-            _mainMusic.volume = 0f;
-            _mainMusic.Play();
-            _mainMusic.DOFade(defaultMusicVolume, 10f).SetDelay(3f);
+            _defaultMusicVolume = _mainMusicSource.volume;
+
+            SetNextMusic();
+            
+        }
+
+        [Button]
+        private void SetNextMusic()
+        {
+            _mainMusicSource.Stop();
+            _mainMusicSource.clip = _musicClips[_musicIndex % _musicClips.Count];
+            _musicIndex++;
+            Invoke(nameof(SetNextMusic), _mainMusicSource.clip.length);
+            _mainMusicSource.volume = 0f;
+            _mainMusicSource.Play();
+            _mainMusicSource.DOFade(_defaultMusicVolume, 10f);
+        }
+
+        private void OnDisable()
+        {
+            CancelInvoke();
         }
 
         // public void PlayClip(SoundType soundType, float customVolume = 0f)
