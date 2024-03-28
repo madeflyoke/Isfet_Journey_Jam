@@ -101,11 +101,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6623622009019423514}
     m_Modifications:
-    - target: {fileID: 76759527613435792, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 448140472461191736, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -160,16 +155,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smokey
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081122859955986578, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8410993401767806431, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
