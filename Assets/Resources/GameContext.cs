@@ -11,6 +11,8 @@ namespace Resources
         [SerializeField] private MainCharacter _mainCharacterPrefab;
         [SerializeField] private ScreenController _screenController;
         [SerializeField] private LevelLauncher _levelLauncher;
+        //[SerializeField] private SoundController _soundController;
+        
         public override void InstallBindings()
         {
             BindUI();

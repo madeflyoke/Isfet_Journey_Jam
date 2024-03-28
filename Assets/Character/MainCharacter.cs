@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using EasyButtons;
 using UnityEngine;
 
@@ -13,11 +14,6 @@ namespace Character
       [SerializeField] private CharacterController _controller;
       [SerializeField] private ParticleSystem _mainVisualParticle;
 
-      private void Start()
-      {
-         Initialize();
-      }
-
       public void Initialize()
       {
          _mainVisualParticle.Play();
@@ -26,12 +22,12 @@ namespace Character
       }
 
       [Button]
-      public void OnDie()
+      public async void OnDie()
       {
          _movementComponent.SetActive(false);
          _mainVisualParticle.Stop();
          _controller.detectCollisions = false;
-         
+         await UniTask.Delay(2000);
          OnLose?.Invoke();
       }
       

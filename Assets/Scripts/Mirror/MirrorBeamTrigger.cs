@@ -1,4 +1,5 @@
 using System;
+using Character;
 using UnityEngine;
 
 namespace Mirror
@@ -9,8 +10,11 @@ namespace Mirror
 
         public void OnTriggerEnter(Collider other)
         {
-            //Check on Player cross bream
-            //OnPlayerCrossBeam?.Invoke();
+            if (other.TryGetComponent<MainCharacter>(out MainCharacter character))
+            {
+               character.OnDie();
+               OnPlayerCrossBeam?.Invoke();
+            }
         }
     }
 }

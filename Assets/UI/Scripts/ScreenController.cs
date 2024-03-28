@@ -18,9 +18,15 @@ namespace UI.Scripts
         private void OnEnable()
         {
             _root = GetComponent<UIDocument>().rootVisualElement;
-            _fade = FadeScreen.CloneTree().Q<VisualElement>(nameof(UIEleventsType.Fade));
+            
+            _tutor = TutorialScreen.CloneTree().Q<VisualElement>(nameof(UIElementsType.TutorScreen));
+            _root.Add(_tutor);
+            _tutor.AddToClassList(nameof(StyleClasses.TutorHide));
+            
+            _fade = FadeScreen.CloneTree().Q<VisualElement>(nameof(UIElementsType.Fade));
             _root.Add(_fade);
             _fadeAnimationDuration =  1000;
+            
         }
         
         public async void EnableFade(Action action= null)
@@ -33,7 +39,7 @@ namespace UI.Scripts
         
         public async void SetFadeHalf(Action action= null)
         {
-            _fade.RemoveFromClassList(nameof(StyleClasses.HalfFade));
+            _fade.RemoveFromClassList(nameof(StyleClasses.FullFade));
             _fade.AddToClassList(nameof(StyleClasses.HalfFade));
             await UniTask.Delay(_fadeAnimationDuration);
             action?.Invoke();
@@ -48,8 +54,7 @@ namespace UI.Scripts
         }
         public void ShowTutor()
         {
-            _tutor = TutorialScreen.CloneTree().Q<VisualElement>(nameof(UIEleventsType.TutorScreen));
-            _root.Add(_tutor);
+           
             _tutor.Q<Button>(nameof(StyleClasses.CloseTutorBTN)).RegisterCallback<ClickEvent>(evt => CloseTutor());
             _tutor.RemoveFromClassList(nameof(StyleClasses.TutorHide));
         }
@@ -59,6 +64,7 @@ namespace UI.Scripts
             _tutor.Q<Button>(nameof(StyleClasses.CloseTutorBTN)).clickable = new Clickable(()=>{});
             _tutor.AddToClassList(nameof(StyleClasses.TutorHide));
             DisableFade();
+            OnTutorClosed?.Invoke();
         }
     }
     
@@ -69,7 +75,7 @@ namespace UI.Scripts
        CloseTutorBTN
     }
     
-    public enum UIEleventsType{
+    public enum UIElementsType{
         TutorScreen,
         Fade
     }

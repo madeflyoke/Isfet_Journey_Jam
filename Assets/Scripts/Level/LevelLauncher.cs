@@ -9,17 +9,22 @@ namespace Level
     public class LevelLauncher : MonoBehaviour
     {
         public event Action OnWin;
-        [Inject] private MainCharacter _characterPrefab;
+        [Inject] private MainCharacter _character;
         [SerializeField] private Transform _startPoint;
         [SerializeField] private FinishTrigger _finishTrigger;
         [SerializeField] private List<SavePoint> _savePoints = new List<SavePoint>();
-        public MainCharacter Character { get; private set; }
+        public MainCharacter Character => _character;
         private SavePoint _lastSavePoint;
         private Vector3 spawnPosition => _startPoint.position;
 
         public void Init()
         {
-            _savePoints.ForEach(sp=>sp.OnPlayerReachSavePoint+=UpdateLastSavePoint);
+            _savePoints.ForEach(sp=>
+            {
+                sp.OnPlayerReachSavePoint += UpdateLastSavePoint;
+                sp.Active = true;
+            });
+            _finishTrigger.OnPlayerReachFinish += FinishGame;
         }
 
         public void Launch()
@@ -28,13 +33,10 @@ namespace Level
             SpawnPlayer();
         }
 
-        public void DestroyPlayer()=>GameObject.Destroy(Character.gameObject);
-        
         private void SetupPlayer()
         {
-            Character = null;
-            Character = Instantiate(_characterPrefab);
-            Character.gameObject.SetActive(false);
+            _character.Initialize();
+            _character.gameObject.SetActive(false);
         }
 
         private void UpdateLastSavePoint(SavePoint point)
@@ -54,11 +56,18 @@ namespace Level
         private void SpawnPlayer()
         {
             if (_lastSavePoint == null)
-                Character.transform.position = _startPoint.position;
+                _character.transform.position = _startPoint.position;
             else
-                Character.transform.position = _lastSavePoint.SpawnPosition;
+                _character.transform.position = _lastSavePoint.SpawnPosition;
             
-            Character.gameObject.SetActive(true);
+            _character.gameObject.SetActive(true);
+        }
+
+        private void FinishGame()
+        {
+            _finishTrigger.OnPlayerReachFinish -= FinishGame;
+            _savePoints.ForEach(sp=>sp.OnPlayerReachSavePoint-=UpdateLastSavePoint);
+            Debug.Log("Finish");
         }
     }
 }

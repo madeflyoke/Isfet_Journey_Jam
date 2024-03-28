@@ -9,7 +9,6 @@ namespace GameStateMachine.States
         public override void Enter()
         {
             base.Enter();
-            _stateContext.LevelLauncher.DestroyPlayer();
             _stateContext.ScreenController.EnableFade(() =>
             {
                 SwitchToGameplayState();

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace GameStateMachine.States
@@ -11,16 +12,16 @@ namespace GameStateMachine.States
             SetupGame();
         }
 
-        private void SetupGame()
+        private async void SetupGame()
         {
             Application.targetFrameRate = 60;
             _stateContext.LevelLauncher.Init();
             _stateContext.ScreenController.OnTutorClosed += LaunchGame;
+            await UniTask.Delay(2000);
             _stateContext.ScreenController.SetFadeHalf(() =>
             {
                 _stateContext.ScreenController.ShowTutor();
             });
-           
         }
 
         private void LaunchGame()
