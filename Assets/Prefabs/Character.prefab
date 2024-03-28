@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6623622009019423514}
-  - component: {fileID: 8401811097284476549}
   - component: {fileID: 2762119194749361182}
+  - component: {fileID: 8401811097284476549}
   - component: {fileID: 5414413258356225180}
   m_Layer: 0
   m_Name: Character
@@ -35,22 +35,6 @@ Transform:
   - {fileID: 7217236894546923421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8401811097284476549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2922352709403207612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd7c589a9c1180448f3a01bd92aaf6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementComponent: {fileID: 5414413258356225180}
-  _controller: {fileID: 2762119194749361182}
-  _visualHolder: {fileID: 5844166198292861601}
-  _deathParticle: {fileID: 0}
 --- !u!143 &2762119194749361182
 CharacterController:
   m_ObjectHideFlags: 0
@@ -74,9 +58,24 @@ CharacterController:
   m_Radius: 0.29
   m_SlopeLimit: 180
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8401811097284476549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2922352709403207612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd7c589a9c1180448f3a01bd92aaf6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementComponent: {fileID: 5414413258356225180}
+  _controller: {fileID: 2762119194749361182}
+  _mainVisualParticle: {fileID: 6002801122397056536}
 --- !u!114 &5414413258356225180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +161,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a875e8ba1c9dc748b8dd349aca0074d, type: 3}
---- !u!1 &5844166198292861601 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3677890466998728452, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
+--- !u!198 &6002801122397056536 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3557527064059612093, guid: 4a875e8ba1c9dc748b8dd349aca0074d,
     type: 3}
   m_PrefabInstance: {fileID: 7066389523920741797}
   m_PrefabAsset: {fileID: 0}
