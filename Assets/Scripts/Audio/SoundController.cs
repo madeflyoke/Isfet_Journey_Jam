@@ -5,6 +5,7 @@ using DG.Tweening;
 using EasyButtons;
 using Lean.Pool;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Main.Scripts.Audio
 {
@@ -33,10 +34,12 @@ namespace Main.Scripts.Audio
 
         private void Start()
         {
+            if (Random.Range(0,1)==1)
+            {
+                _musicClips.Reverse();
+            }
             _defaultMusicVolume = _mainMusicSource.volume;
-
             SetNextMusic();
-            
         }
 
         [Button]
